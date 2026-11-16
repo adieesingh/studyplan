@@ -19,7 +19,7 @@ export async function signToken(userId:string){
     .sign(key)
 }
 
-export async function setCookie(res:NextResponse,token:string){
+export async function setAuthCookie(res:NextResponse,token:string){
     res.cookies.set(COOKIE_NAME,token,{
         httpOnly:true,
         secure:process.env.NODE_ENV=="production",
@@ -33,7 +33,6 @@ export async  function clearAuthCookies(res:NextResponse){
         res.cookies.set(COOKIE_NAME,"",{path:"/",maxAge:0})
 }
 
-// use 
 export async function getUser(req:NextRequest){
     const token = req.cookies.get(COOKIE_NAME)?.value;
     if(!token) return null;
