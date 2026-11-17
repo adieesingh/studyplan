@@ -18,7 +18,7 @@ export async function POST(req:NextRequest  ){
         };
         const user = await User.findOne({email:parsed.data.email.toLowerCase()}); 
 
-        const ok = user &&(await bcrypt.compare(user.password,parsed.data.password));
+        const ok = user &&(await bcrypt.compare(parsed.data.password,user.passwordHash));
         if(!ok || !user){
             return NextResponse.json({error:"Invalid email and password"},{status:401});
         };

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const MONGO_URL= process.env.MONGODB_URL;
-console.log(MONGO_URL)
+
 if(!MONGO_URL) throw new Error("MONGO URL is not there in .env.local");
 
 type Cache ={
